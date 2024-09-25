@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_team, only: %i[ show edit update destroy ]
 
   # GET /teams or /teams.json
@@ -8,6 +9,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/1 or /teams/1.json
   def show
+    @coaches = @team.users.joins(:teams_users_roles).where(teams_users_roles: { role_id: TeamsUsersRole::ROLES.fetch("coach") })
+    @members = @team.users.joins(:teams_users_roles).where(teams_users_roles: { role_id: TeamsUsersRole::ROLES.fetch("member") })
   end
 
   # GET /teams/new
@@ -25,10 +28,11 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
+        Teams::CreateTeamsUsersRoleService.new(team: @team, current_user: current_user).call
         format.html { redirect_to @team, notice: "Team was successfully created." }
         format.json { render :show, status: :created, location: @team }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, notice: "Team could not be created" }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
@@ -65,6 +69,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.fetch(:team, {})
+      params.require(:team).permit(:name, :location, :desc, :fee, :payment_frequency, :start_date, :active)
     end
 end

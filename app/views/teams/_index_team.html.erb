@@ -1,0 +1,16 @@
+<div id="<%= dom_id team %>" class=" flex flex-row justify-between items-center my-2 py-2 px-3 rounded-3xl bg-slate-400 bg-opacity-40">
+  <div id="index-team-info-container" class=" flex flex-row">
+    <div id="index-team-info-header" class="mr-2">
+      <p class="text-lg text-white "><%= team.name %></p>
+    </div>
+    <div id="team-info-content" class="text-lg flex flex-row">
+      <p class="text-lg mr-2 text-white"><%= team.location %></p>
+      <p class="text-lg mr-2 text-white"><%= team.creator %> </p>
+      <p class="text-lg mr-2 text-white"><%= number_to_currency(team.fee, unit: "£") %> </p>
+    </div>
+  </div>
+  <div id="index-team-buttons" class=" flex flex-row">
+    <%= button_to "Delete", @team, method: :delete, class: "mr-2 rounded-lg py-3 px-5 bg-red-600 font-medium text-white" %>
+    <%= button_to "Show", team, class: " rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>

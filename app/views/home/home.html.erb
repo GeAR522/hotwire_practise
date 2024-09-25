@@ -1,6 +1,24 @@
-<div>
-  <p class="text-4xl">Create an account and add you team or log in and join your local team!</p>
-  <p class="my-6">image here</p>
-  <p class="text-4xl">Set up a team and post update for events, local news, or send out notices to members of your team if the weather decides to get in the way!</p>
-  <%= link_to "Sign Up!", new_user_registration_path, class: " text-4xl" %>
+<div id="home-container" class=" rounded-3xl px-6 py-5 bg-slate-300 bg-opacity-45 ">
+  <% if current_user %>
+    <div id="home-content">
+      <h1><%= link_to "Check the Teams!", teams_path %></h1>
+    </div>
+  <% else %>
+    <div id="home-content">
+      <p class="text-2xl text-center text-white text-shadow shadow-blue-800">
+        <span class="text-4xl hover:bg-slate-500 hover:bg-opacity-30 rounded-xl px-3 py-2"><%= link_to "Sign Up", new_user_registration_path, class: "font-semibold" %>
+        </span>
+      </br>and add your team</br>or</br>
+  <span class="text-4xl hover:bg-slate-500 hover:bg-opacity-30 rounded-xl px-3 py-2">
+    <%= link_to "Sign In", new_user_session_path, class: "font-semibold", data: { turbo_frame: 'modal' } %>
+  </span>
+</br>and join your local team!
+</p>
+<%= image_tag 'local-team.jpg', class: " my-6 rounded-xl" %>
+<p class="text-2xl text-center text-white text-shadow shadow-blue-800">Set up a team and post update for events, local news, or send out notices to members of your team if the weather decides to get in the way!</p>
+<p class=" flex mt-6 justify-center">
+  <%= link_to "Sign Up!", new_user_registration_path, class: " text-4xl text-white text-shadow shadow-blue-800 font-semibold hover:bg-slate-500 hover:bg-opacity-30 rounded-xl px-3 py-2" %>
+</p>
+</div>
+<% end %>
 </div>

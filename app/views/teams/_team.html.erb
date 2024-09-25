@@ -1,2 +1,17 @@
 <div id="<%= dom_id team %>">
+  <div id="team-info-container" class="text-white">
+    <div id="team-info-header" class="items-center">
+      <p class="text-4xl font-bold"><%= @team.name.capitalize %> <span class="text-lg font-normal"> - <%= @team.creator %></span></p>
+    </div>
+    <div id="team-info-content">
+      <p><%= @team.location %> </p>
+      <p><%= @team.desc %> </p>
+      <p><%= @team.fee %> - <%= @team.pay_freq.capitalize %> </p>
+    </div>
+    <div id="team-info-coaches">
+      <% coaches.map do |coach| %>
+        <p><%= coach.id%> - <%= coach.email %></p>
+      <% end %>
+    </div>
+  </div>
 </div>

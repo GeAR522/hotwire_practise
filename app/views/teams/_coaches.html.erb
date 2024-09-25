@@ -1,0 +1,10 @@
+<div id="coaches-container">
+  <div id="coaches-header">
+    <h1 id="coaches-title">Coaches</h1>
+  </div>
+  <div id="coaches-content">
+    <% @coaches.map do |coach, index| %>
+      <p id=<%="coach #{index}"%>><%= coach.name %></p>
+    <% end %>
+  </div>
+</div>

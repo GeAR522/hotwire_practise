@@ -1,8 +1,36 @@
-<%= form_with(model: team, class: "contents") do |form| %>
+<%= form_with(model: @team, class: "contents") do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, autofocus:true %>
+  </div>
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location  %>
+  </div>
+  <div class="field">
+    <%= form.label :desc %>
+    <%= form.text_area :desc %>
+  </div>
+  <div class="field">
+    <%= form.label :fee %>
+    <%= form.number_field :fee, in: 1..9999, step: 0.01 %>
+  </div>
+  <div class="field">
+    <%= form.label :payment_frequency %>
+    <% options = Team::PAY_FREQUENCIES.map {|key, value| [value, key] } %>
+    <%= form.select :payment_frequency, options %>
+  </div>
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date  %>
+  </div>
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active  %>
+  </div>
   <% if team.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
       <ul>
         <% team.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,7 +38,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

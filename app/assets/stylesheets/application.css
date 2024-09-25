@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background-image: url('footie-pitch.webp');
+  background-size: cover; /* Optional: scales the image to cover the entire background */
+  background-position: center; /* Optional: centers the image */
+  background-repeat: no-repeat; /* Optional: prevents the image from repeating */
+  height: 100vh; /* Ensures the body takes the full height */
+  margin: 0; /* Removes default margin */
+}
+
+#flash-message .notice {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+#flash-message .alert.hide {
+  opacity: 0;
+}

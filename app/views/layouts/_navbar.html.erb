@@ -1,26 +1,32 @@
-<nav id="navbar" class=" bg-transparent">
+<nav id="navbar" class=" relative bg-transparent">
   <div id="navbar-container" class="container mx-auto flex flex-row justify-between items-center h-16">
-    <div id="navbar-left" >
-      <%= link_to "Home", root_path, id: "navbar-item", class: "text-3xl text-white text-shadow shadow-red-600 mix-blend-difference " %>
+    <div id="navbar-left" class=" flex items-center" >
+      <%= link_to "Home", root_path, id: "navbar-item", class: "text-3xl text-white text-shadow shadow-blue-800 hover:bg-slate-500 hover:bg-opacity-40 rounded-2xl px-3 py-2 " %>
     </div>
     <div id="navbar-right" class="">
-      <ul id="navbar-nav" class="flex flex-row space-x-4">
+      <ul id="navbar-nav" class="flex flex-row space-x-4 items-center">
         <% if current_user %>
-          <li id="nav-item">
-            <%= link_to "Edit Account", edit_user_registration_path, id: "nav-link", class: "text-3xl text-white text-shadow shadow-red-600 mix-blend-difference" %>
+          <li id="nav-item" >
+            <%= link_to "Teams", teams_path, id: "nav-link", class: "text-3xl text-white text-shadow shadow-blue-800 hover:bg-slate-500 hover:bg-opacity-40 rounded-2xl px-3 py-2" %>
           </li>
           <li id="nav-item">
-            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-3xl text-white text-shadow shadow-red-600 mix-blend-difference mx-2" %>
+            <%= link_to "Edit Account", edit_user_registration_path, id: "nav-link", class: "text-3xl text-white text-shadow shadow-blue-800 hover:bg-slate-500 hover:bg-opacity-40 rounded-2xl px-3 py-2" %>
+          </li>
+          <li id="nav-item">
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-3xl text-white text-shadow shadow-blue-800 hover:bg-slate-500 hover:bg-opacity-40 rounded-2xl px-3 py-2 mx-2" %>
           </li>
         <% else %>
           <li id="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, id: "nav-link", class: "text-3xl text-white text-shadow shadow-red-600 mix-blend-difference" %>
+            <%= link_to "Sign Up", new_user_registration_path, id: "nav-link", class: "text-3xl text-white text-shadow shadow-blue-800 hover:bg-slate-500 hover:bg-opacity-40 rounded-2xl px-3 py-2" %>
           </li>
           <li id="nav-item">
-            <%= link_to "Sign In", new_user_session_path, data: { turbo_frame: 'modal' }, class: "nav-link", class: "text-3xl text-white text-shadow shadow-red-600 mix-blend-difference" %>
+            <%= link_to "Sign In", new_user_session_path, data: { turbo_frame: 'modal' }, class: "nav-link", class: "text-3xl text-white text-shadow shadow-blue-800 hover:bg-slate-500 hover:bg-opacity-40 rounded-2xl px-3 py-2" %>
           </li>
         <% end %>
       </ul>
     </div>
+  </div>
+  <div class=" w-full flex justify-center z-10">
+    <%= render 'layouts/flashes' %>
   </div>
 </nav>
